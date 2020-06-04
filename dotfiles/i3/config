@@ -179,7 +179,7 @@ smart_gaps on
 client.unfocused #333333 #222222 #888888 #292d2e #397019
 client.focused_inactive #333333 #5f676a #ffffff #484e50 #397019
 client.focused #00ff00 #285577 #ffffff #2e9ef4 #000000
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
