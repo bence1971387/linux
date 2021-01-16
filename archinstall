@@ -1,0 +1,183 @@
+#set live iso keymap
+
+ loadkeys hu
+
+#connect live iso to Wifi
+
+ ip link (find wifi card)
+ ip link down (wifi card)
+ wifi-menu
+ (iwctl)
+
+#synchronize time date protocol
+ timedatectl set-ntp true
+
+#refresh pacman database
+
+ pacman -Syy reflector
+ reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
+ pacman -Syy
+
+#create partitions
+ gdisk /dev/sda
+ n
+ enter
+ enter
+ +300M
+ ef00
+
+ n
+ enter
+ enter
+ enter
+ enter
+
+ w
+ enter
+ y
+
+ lsblk
+
+#create filesystems
+ mkfs.fat -F32 /dev/sda1
+ mkfs.btrfs /dev/sda2
+
+ mount /dev/sda2 /mnt
+ btrfs su cr /mnt/@root
+ btrfs su cr /mnt/@home
+ btrfs su cr /mnt/@var
+ btrfs su cr /mnt/@srv
+ btrfs su cr /mnt/@opt
+ btrfs su cr /mnt/@tmp
+ btrfs su cr /mnt/@swap
+ btrfs su cr /mnt/@.snapshots
+
+ umount /mnt
+
+ mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/sda2 /mnt
+ mkdir /mnt/{boot,home,var,srv,opt,tmp,swap,.snapshots}
+ mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/sda2 /mnt/home
+ mount -o noatime,compress=lzo,space_cache,subvol=@srv /dev/sda2 /mnt/srv
+ mount -o noatime,compress=lzo,space_cache,subvol=@tmp /dev/sda2 /mnt/tmp
+ mount -o noatime,compress=lzo,space_cache,subvol=@opt /dev/sda2 /mnt/opt
+ mount -o noatime,compress=lzo,space_cache,subvol=@.snapshots /dev/sda2 /mnt/.snapshots
+
+ mount -o nodatacow,subvol=@swap /dev/sda2 /mnt/swap
+ mount -o nodatadow,subvol=@var /dev/sda2 /mnt/var 
+
+ mount /dev/sda1 /mnt/boot
+
+#install arch
+
+ pacstrap /mnt base linux linux-firmware vim amd-ucode btrfs-progs
+
+#generate fstable
+ 
+ genfstab -U /mnt >> /mnt/etc/fstab
+
+#arch-chroot
+
+ arch-chroot /mnt
+
+#swap
+ 
+ truncate -s 0 /swap/swapfile
+ chattr +C /swap/swapfile
+ btrfs property set /swap/swapfile compression none
+ dd if=/dev/zero of=/swap/swapfile bs=1G count=8 status="progress"
+ chmod 600 /swap/swapfile
+ mkswap /swap/swapfile
+ swapon /swap/swapfile
+
+ vim /etc/fstab
+ 
+ add
+ /swap/swapfile	none	swap	defaults	0	0
+
+#timezone
+
+ timedatectl list-timezones | grep Budapest
+ ln -sf /usr/share/zoneinfo/Europe/Budapest /etc/localtime
+
+ hwclock --systohc
+
+#locales
+
+ vim /etc/locale.gen
+ locale-gen
+ echo LANG=en_US.UTF-8 >> /etc/locale.conf
+ echo KEYMAP=hu >> /etc/vconsole.conf
+
+ vim /etc/hosname
+
+ LaLiLuLeLo
+
+ vim /etc/hosts
+
+ 127.0.0.1	localhost
+ ::1		localhost
+ 127.0.1.1	LaLiLuLeLo.localdomain	LaLiLuLeLo
+
+ passwd
+
+ pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet wpa_supplicant dialog mtools dosfstools base-devel linux-headers git reflector xdg-utils xdg-user-dirs
+
+ vim /etc/mkinitcpio.conf
+
+ MODULES=(btrfs)
+ mkinitcpio -p linux
+
+#install grub
+ 
+ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+ grub-mkconfig -o /boot/grub.cfg
+
+#enable service
+
+ systemctl enable NetworkManager
+
+#add user
+
+ useradd -mG wheel b
+ passwd
+
+ EDITOR=vim visudo
+ %wheel ALL=(ALL) ALL
+
+#sudo pacman -S xf86-video-amdgpu 
+
+exit
+umount -a
+reboot
+
+#wifi
+ nmtui
+
+#install xorg, wm
+ paman -S bspwm polybar sxhkd xorg xorg-xinit
+
+ vim .config/X11/xinitrc
+ 
+ sxhkd &
+
+ xsetroot -cursor_name left_ptr &
+ xrdb -load ~/.config/X11/xresources &
+ xmodmap ~/.config/X11/xmodmap &
+
+ exec bspwm
+
+ vim ~/.zshrc
+ if [[ "$(tty)" = "/dev/tty1" ]]; then
+  pgrep bspwm || startx "$XDG_CONFIG_HOME/X11/xinitrc"
+ fi
+ 
+ eval "$(gh completion -s zsh)"
+
+
+
+ example configs
+ /usr/doc/bspwm
+ /usr/doc/sxhkd
+
+ .config/bspwm
+ .config/sxhkd
