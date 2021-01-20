@@ -190,7 +190,7 @@ reboot
  
 #secure linux
 
-sudo pacman -S ufw fail2ban
+sudo pacman -S ufw fail2ban arch-audit
 sudo pacman -S linux-lts linux-lts-headers
 
 #install audio
