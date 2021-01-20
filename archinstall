@@ -158,7 +158,7 @@ reboot
 
 #install xorg, wm
  pacman -Syu
- pacman -S bspwm polybar sxhkd xorg xorg-xinit
+ pacman -S bspwm polybar rofi sxhkd xorg xorg-xinit
 
  vim .config/X11/xinitrc
  
@@ -199,6 +199,11 @@ sudo pacman -S linux-lts linux-lts-headers
 
 pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pulseaudio-jack jack2 jack-keyboard jack_capture
 
+
+#install audio plugins
+
+
+
 /etc/pacman.conf
 
 [multilib]
@@ -208,10 +213,18 @@ Include = /etc/pacman.d/mirrorlist
 sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader -y
 sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris -y
 
+#file manager
+
+pacman -S thunar thunar-archive-plugin tumbler
+
 #install codecs
 
 sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore
 sudo pacman -S vlc
+
+#archive management
+
+sudo pacman -S p7zip p7zip-plugins unrar tar
 
 #maintenance
 
@@ -224,3 +237,5 @@ systemctl enable paccache.timer
 systemctl start paccache.timer
 paccache -rk1
 reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
+
+curl -s "https://archlinux.org/mirrorlist/?country=HU&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 -
