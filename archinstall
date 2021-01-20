@@ -212,3 +212,15 @@ sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib3
 
 sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore
 sudo pacman -S vlc
+
+#maintenance
+
+systemctl --failed
+journalctl -p 3 -xb
+#packages installed as dependencies but now nothing depends on them //orphaned
+pacman -Qtd 
+pacman -S wat-git bleachbit
+systemctl enable paccache.timer
+systemctl start paccache.timer
+paccache -rk1
+reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
