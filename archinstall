@@ -66,8 +66,8 @@ iwctl station wlan0 connect XYZ...
  mount -o nodatacow,subvol=@swap /dev/sda2 /mnt/swap
  mount -o nodatadow,subvol=@var /dev/sda2 /mnt/var
  
- chattr +C /swap
- chattr +C /var
+ chattr -R +C /swap
+ chattr -R +C /var
 
  mount /dev/sda1 /mnt/boot
 
