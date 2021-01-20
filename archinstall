@@ -195,7 +195,21 @@ sudo pacman -S linux-lts linux-lts-headers
 
 #install audio
 
-pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pulseaudio-jack jack2 jack-keyboard jack_capture carla-git carla-bridges-win32-git carla-bridges-win64-git
+pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pulseaudio-jack jack2 jack-keyboard jack_capture carla-git carla-bridges-win32-git carla-bridges-win64-git qjackctl
+
+vim /etc/security/limits.conf
+
+@audio - rtprio 99
+@audio - memlock unlimited
+
+
+
+#qjackctl
+
+pactl suspend-sink alsa_output.usb-BEHRINGER_UMC202HD_192k-00.analog-stereo 1
+pactl load-module module-jack-sink channels=2; pactl load-module module-jack-source; pactl set-default-sink jack_out; pactl set-default-source jack_in
+pactl unload-module module-jack-sink; pactl unload-module module-jack-source;
+pactl suspend-sink alsa_output.usb-BEHRINGER_UMC202HD_192k-00.analog-stereo 0; pactl set-default-sink alsa_output.usb-BEHRINGER_UMC202HD_192k-00.analog-stereo
 
 #midi
 
