@@ -195,10 +195,25 @@ sudo pacman -S linux-lts linux-lts-headers
 
 #install audio
 
-
 pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pulseaudio-jack jack2 jack-keyboard jack_capture carla-git carla-bridges-win32-git carla-bridges-win64-git
 
-#install audi tools
+#midi
+
+pacman -S a2jmidi surge
+
+#install yay
+cd /opt
+sudo git clone https://aur.archlinux.org/yay-git.git
+sudo chown -R b:b ./yay-git
+cd yay-git
+makepkg -si
+sudo yay -Syu
+
+#gaming
+
+pacman -S legendary lutris gamemode-git lib32-gamemode-git steam mangohud lib32-mangohud
+
+#install audio tools
 
 pacman -S ardour audacity
 
@@ -215,7 +230,7 @@ Include = /etc/pacman.d/mirrorlist
 
 
 sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader -y
-sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris -y
+sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader -y
 
 #file manager
 
@@ -230,13 +245,17 @@ sudo pacman -S vlc
 
 sudo pacman -S p7zip p7zip-plugins unrar tar
 
+#drawing
+
+pacman -S aseprite
+
 #maintenance
 
 systemctl --failed
 journalctl -p 3 -xb
 #packages installed as dependencies but now nothing depends on them //orphaned
 pacman -Qtd 
-pacman -S wat-git bleachbit
+pacman -S wat-git bleachbit cronie
 systemctl enable paccache.timer
 systemctl start paccache.timer
 paccache -rk1
