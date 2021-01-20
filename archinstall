@@ -237,9 +237,14 @@ sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib3
 
 pacman -S code go
 
+#shell
+
+ pacman -S zsh
+ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 #university
 
-pacman -S teams webex-teams
+pacman -S teams webex-teams discord
 
 #java
 
