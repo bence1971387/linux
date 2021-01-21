@@ -158,7 +158,17 @@ reboot
 
 #install xorg, wm
  pacman -Syu
- pacman -S bspwm polybar rofi sxhkd xorg xorg-xinit
+ pacman -S bspwm rofi sxhkd xorg xorg-xinit
+
+#install yay
+cd /opt
+sudo git clone https://aur.archlinux.org/yay-git.git
+sudo chown -R b:b ./yay-git
+cd yay-git
+makepkg -si
+sudo yay -Syu
+
+yay -S polybar
 
  vim .config/X11/xinitrc
  
@@ -215,13 +225,7 @@ pactl suspend-sink alsa_output.usb-BEHRINGER_UMC202HD_192k-00.analog-stereo 0; p
 
 pacman -S a2jmidi surge
 
-#install yay
-cd /opt
-sudo git clone https://aur.archlinux.org/yay-git.git
-sudo chown -R b:b ./yay-git
-cd yay-git
-makepkg -si
-sudo yay -Syu
+
 
 #gaming
 
