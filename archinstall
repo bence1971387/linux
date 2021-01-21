@@ -42,7 +42,7 @@ iwctl station wlan0 connect XYZ...
  mkfs.btrfs /dev/sda2
 
  mount /dev/sda2 /mnt
- btrfs su cr /mnt/@root
+ btrfs su cr /mnt/@
  btrfs su cr /mnt/@home
  btrfs su cr /mnt/@var
  btrfs su cr /mnt/@srv
@@ -53,7 +53,7 @@ iwctl station wlan0 connect XYZ...
 
  umount /mnt
 
- mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/sda2 /mnt
+ mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/sda2 /mnt
  mkdir /mnt/{boot,home,var,srv,opt,tmp,swap,.snapshots}
  mkdir /mnt/home/data
  mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/sda2 /mnt/home
