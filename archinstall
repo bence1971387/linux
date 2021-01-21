@@ -112,6 +112,9 @@ iwctl station wlan0 connect XYZ...
  locale-gen
  echo LANG=en_US.UTF-8 >> /etc/locale.conf
  echo KEYMAP=hu >> /etc/vconsole.conf
+ 
+ localectl set-x11-keymap hu
+ localectl set-keymap hu
 
  vim /etc/hosname
 
@@ -190,8 +193,9 @@ yay -S polybar
 
 
  example configs
- /usr/doc/bspwm
- /usr/doc/sxhkd
+ /usr/share/doc/bspwm
+ /usr/share/doc/sxhkd
+ /usr/share/doc/polybar
 
  .config/bspwm
  .config/sxhkd
@@ -305,4 +309,8 @@ systemctl start paccache.timer
 paccache -rk1
 reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
 
-#curl -s "https://archlinux.org/mirrorlist/?country=HU&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 -
+pacman -S pacman-contrib net-tools
+
+add to bash_profile
+rofi cannot set locale fix
+export LC_ALL="C"
