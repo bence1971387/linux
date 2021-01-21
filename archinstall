@@ -144,7 +144,7 @@ iwctl station wlan0 connect XYZ...
 #add user
 
  useradd -mG wheel b
- passwd
+ passwd b
 
  EDITOR=vim visudo
  %wheel ALL=(ALL) ALL
