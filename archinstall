@@ -314,3 +314,13 @@ pacman -S pacman-contrib net-tools
 add to bash_profile
 rofi cannot set locale fix
 export LC_ALL="C"
+
+
+#themeing
+
+sudo pacman -S kvantum-qt5
+install select theme
+sudo pacman -S lxappearance
+select gtk theme
+sudo pacman -S qt5ct
+uses theme from kvantum and applies to apps
