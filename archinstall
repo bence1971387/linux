@@ -128,7 +128,7 @@ iwctl station wlan0 connect XYZ...
 
  passwd
 
- pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet wpa_supplicant dialog dosfstools base-devel linux-headers git sudo reflector xdg-utils xdg-user-dirs notepadqq
+ pacman -S grub grub-btrfs efibootmgr networkmanager net-tools network-manager-applet wpa_supplicant dialog dosfstools base-devel linux-headers git sudo reflector xdg-utils xdg-user-dirs notepadqq
 
  vim /etc/mkinitcpio.conf
 
