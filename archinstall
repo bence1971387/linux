@@ -14,7 +14,7 @@ iwctl station wlan0 connect XYZ...
 #refresh pacman database
 
  pacman -Syy reflector
- reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
+ reflector -c Hungary -a 6 --sort rate --save /etc/pacman.d/mirrorlist
  pacman -Syy
 
 #create partitions
@@ -307,7 +307,7 @@ pacman -S wat-git bleachbit cronie stacer
 systemctl enable paccache.timer
 systemctl start paccache.timer
 paccache -rk1
-reflector -c Hungary -a 6 --sort rate --save /etc/padman.d/mirrorlist
+reflector -c Hungary -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -S pacman-contrib net-tools
 
