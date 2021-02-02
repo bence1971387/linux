@@ -337,3 +337,8 @@ vim
 
 uncomment
 export FREETYPE_PROPERTIES="truetype:interpreter-version=40"
+
+#thunar video,image tumbnails
+
+pacman -S tumbler ffmpegthumbnailer
+#maybe thunar-media-tags-plugin
