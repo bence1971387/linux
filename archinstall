@@ -296,6 +296,7 @@ pacman -S aseprite
 #ricing
 
 pacman -S python-pywal lolcat neofetch gtop figlet picom font-manager-git feh
+pacman -S xdotool
 
 #maintenance
 
