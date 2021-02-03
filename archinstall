@@ -350,7 +350,7 @@ rofi cannot set locale fix
 export LC_ALL="C"
 
 
-#themeing
+#theming
 
 sudo pacman -S kvantum-qt5
 install select theme
