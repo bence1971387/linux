@@ -279,8 +279,13 @@ pacman -S jdk-openjdk jre-openjdk
 pacman -S brave elinks
 
 #file manager
+#thunar video,image tumbnails
+
+pacman -S tumbler ffmpegthumbnailer
+#maybe thunar-media-tags-plugin
 
 pacman -S thunar thunar-archive-plugin tumbler
+pacman -S thunar-volman gvfs gvfs-afc
 
 #install codecs
 
@@ -373,8 +378,3 @@ vim
 
 uncomment
 export FREETYPE_PROPERTIES="truetype:interpreter-version=40"
-
-#thunar video,image tumbnails
-
-pacman -S tumbler ffmpegthumbnailer
-#maybe thunar-media-tags-plugin
