@@ -284,6 +284,9 @@ pacman -S brave elinks
 pacman -S tumbler ffmpegthumbnailer
 #maybe thunar-media-tags-plugin
 
+//android device connection
+pacman -S gvfs-mtp libmtp
+
 pacman -S thunar thunar-archive-plugin tumbler
 pacman -S thunar-volman gvfs gvfs-afc
 
