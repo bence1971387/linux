@@ -384,3 +384,7 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=40"
 
 
 https://github.com/morrownr/8812au install alfa driver from here
+
+
+#awesome-font management
+yay -S font-manager
