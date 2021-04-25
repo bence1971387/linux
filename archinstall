@@ -281,6 +281,9 @@ pacman -S brave elinks
 #file manager
 #thunar video,image tumbnails
 
+#default file-manager
+xdg-mime default thunar.desktop inode/directory
+
 pacman -S tumbler ffmpegthumbnailer
 #maybe thunar-media-tags-plugin
 
