@@ -394,3 +394,13 @@ yay -S font-manager
 
 #brave addons
 https://fosspost.org/chromium-browsers-privacy-extensions/
+
+#virtualbox extension and iso upgrade
+.config/virtualbox virtualbox iso
+virtualbox gui insert guest iso
+
+/usr/lib/virtualbox/
+sudo rm -rf ./ExtensionPacks
+sudo vboxmanage extpack install <filename>
+open virtualbox gui -> preferences -> add extension there and it will show an error then correctly shows the install on gui
+and vboxmanage list extpacks.
