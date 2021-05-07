@@ -404,3 +404,7 @@ sudo rm -rf ./ExtensionPacks
 sudo vboxmanage extpack install <filename>
 open virtualbox gui -> preferences -> add extension there and it will show an error then correctly shows the install on gui
 and vboxmanage list extpacks.
+
+
+#usb dkms error renesas driver
+yay -S upd72020x-fw
