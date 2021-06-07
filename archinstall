@@ -408,3 +408,7 @@ and vboxmanage list extpacks.
 
 #usb dkms error renesas driver
 yay -S upd72020x-fw
+
+#additional good software
+
+workflowy, pureref, aseprite, godot
