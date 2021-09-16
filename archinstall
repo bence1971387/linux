@@ -433,3 +433,9 @@ yay -S upd72020x-fw
 workflowy, pureref, aseprite, godot
 
 #webpage lospec.com
+
+#sxhkd
+# close and kill
+super + c
+    bspc node -c
+
