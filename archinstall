@@ -439,3 +439,7 @@ workflowy, pureref, aseprite, godot
 super + c
     bspc node -c
 
+#screensaver
+
+xset q //to check
+xset s off
