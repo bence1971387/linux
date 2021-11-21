@@ -176,7 +176,8 @@ yay -S polybar
  vim .config/X11/xinitrc
  
  sxhkd &
-
+ 
+ pacman -S xcursor-simpleandsoft
  xsetroot -cursor_name left_ptr &
  xrdb -load ~/.config/X11/xresources &
  xmodmap ~/.config/X11/xmodmap &
