@@ -444,3 +444,11 @@ super + c
 
 xset q //to check
 xset s off
+
+UUID=F7D4-597D                            /boot/efi      vfat    umask=0077 0 2
+UUID=8a817cf5-a152-41f0-b34e-77b7cacef43c /              btrfs   subvol=/@,defaults,noatime,compress=zstd 0 0
+UUID=8a817cf5-a152-41f0-b34e-77b7cacef43c /home          btrfs   subvol=/@home,defaults,noatime,compress=zstd 0 0
+UUID=8a817cf5-a152-41f0-b34e-77b7cacef43c /var/cache     btrfs   subvol=/@cache,defaults,noatime,compress=zstd 0 0
+UUID=8a817cf5-a152-41f0-b34e-77b7cacef43c /var/log       btrfs   subvol=/@log,defaults,noatime,compress=zstd 0 0
+UUID=8a817cf5-a152-41f0-b34e-77b7cacef43c /swap          btrfs   subvol=/@swap,defaults,noatime 0 0
+#/swap/swapfile                            swap           swap    defaults,noatime 0 0
